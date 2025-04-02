@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Domain.Abstructions;
-using Domain.ValueObjects;
-
 namespace Domain.Models
 {
     public class Topic : Entity<TopicId>
