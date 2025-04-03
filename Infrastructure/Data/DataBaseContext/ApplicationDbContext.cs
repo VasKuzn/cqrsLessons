@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Data.DataBaseContext;
-using Domain.Models;
-using Domain.ValueObjects;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.DataBaseContext
 {
@@ -21,17 +14,7 @@ namespace Infrastructure.Data.DataBaseContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Topic>().Property(topic => topic.Id).HasConversion(
-                id => id.Value,
-                value => TopicId.Of(value)
-            );
-            modelBuilder.Entity<Topic>().OwnsOne(topic => topic.Location,
-            location =>
-            {
-                location.Property(l => l.City).HasColumnName("City");
-                location.Property(l => l.Street).HasColumnName("Street");
-            });
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
