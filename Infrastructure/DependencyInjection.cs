@@ -1,3 +1,4 @@
+using Application.Data.DataBaseContext;
 using Infrastructure.Data.DataBaseContext;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ namespace Infrastructure
             {
                 options.UseSqlite(connection);
             });
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
     }
